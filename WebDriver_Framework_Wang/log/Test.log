@@ -1,0 +1,11 @@
+2016-06-16 12:26:49 INFO  MainTest:84 - testCase_Path:./testcase/suite1.xls
+2016-06-16 12:26:49 INFO  MainTest:174 - data:http://www.google.cn/maps/
+2016-06-16 12:26:49 INFO  MainTest:175 - keywords:navigate
+2016-06-16 12:27:17 INFO  MainTest:174 - data:10000
+2016-06-16 12:27:17 INFO  MainTest:175 - keywords:pause
+2016-06-16 12:27:17 INFO  MainTest:204 - data name:col|Boutique Name (EN)
+2016-06-16 12:27:17 INFO  MainTest:205 - column name:Boutique Name (EN)
+2016-06-16 12:27:18 INFO  MainTest:174 - data:Alfred Dunhill Boulevard Emirates Towers
+2016-06-16 12:27:18 INFO  MainTest:175 - keywords:input
+2016-06-16 12:27:18 INFO  MainTest:174 - data:
+2016-06-16 12:27:18 INFO  MainTest:175 - keywords:click
