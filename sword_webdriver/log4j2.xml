@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" moniterIntervel="300">
+	<properties>
+		<property name="LOG_HOME">logs</property>
+		<property name="FILE_NAME">Testlog</property>
+	</properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+
+		<RollingRandomAccessFile name="MyFile"
+			fileName="${LOG_HOME}/${FILE_NAME}.log"
+			filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd HH}-%i.log">
+			
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<Policies>
+			
+				<!-- TimeBasedTriggeringPolicy  这个配置需要和filePattern结合使用，
+				注意filePattern中配置的文件重命名规则是${FILE_NAME}-%d{yyyy-MM-dd HH}-%i，
+				最小的时间粒度是hh，即小时，TimeBasedTriggeringPolicy指定的size是1，
+				结合起来就是每1小时生成一个新文件。如果改成%d{yyyy-MM-dd HH-mm}，最小粒度为分钟，
+				则每一个分钟生成一个文件。 -->
+				<TimeBasedTriggeringPolicy interval="1" />
+				
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingRandomAccessFile>
+
+	</Appenders>
+
+	<!-- TRACE < DEBUG < INFO < WARN < ERROR < FATAL -->
+	<Loggers>
+		<Root level="trace">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref = "MyFile"/>
+		</Root>
+	</Loggers>
+</Configuration>

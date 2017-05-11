@@ -6,6 +6,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.sword.util.LogUtil;
 import com.sword.util.Util;
 
 public class TestDemo {
@@ -14,7 +15,7 @@ public class TestDemo {
 	
 	@Test
 	public void f() {
-		
+		LogUtil.info("hello world");
 		driver.get(url);
 		Util.pause(3000);
 	}
@@ -24,6 +25,7 @@ public class TestDemo {
 
 		System.setProperty("webdriver.chrome.driver", "driver/chromedriver");
 		driver = new ChromeDriver();
+//		LogUtil.init(this.getClass().getName());
 
 	}
 
