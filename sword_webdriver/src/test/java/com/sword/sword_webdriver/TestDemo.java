@@ -1,15 +1,12 @@
 package com.sword.sword_webdriver;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.sun.jna.platform.KeyboardUtils;
-import com.sword.util.KeyboardUtil;
+import com.sword.util.ExcelUtil;
 import com.sword.util.LogUtil;
 import com.sword.util.Util;
 
@@ -21,15 +18,12 @@ public class TestDemo {
 	public void f() {
 		LogUtil.info("hello world");
 		driver.get(url);
-		KeyboardUtil.pressCtrlandTab(); 
-		Util.pause(3000);
-//		driver.findElement(By.id("kw")).sendKeys("world");
-		KeyboardUtil.pressCtrlV_Paste_Mac("hello");
-		KeyboardUtil.pressTabKey();
 		
-		KeyboardUtil.pressTabKey();
-		KeyboardUtil.pressTabKey();
-		KeyboardUtil.pressEnterKey();
+		ExcelUtil.openExcel("testcase/suite1.xls");
+		String content = ExcelUtil.getCellContent(1, 0, 1);
+		LogUtil.info("content is "+content);
+		
+		ExcelUtil.setCellContent("hello", 1, 23, 1);
 		
 		Util.pause(5000);
 	}
