@@ -6,6 +6,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.sword.propertyMap.PropertyMap;
 import com.sword.util.ExcelUtil;
 import com.sword.util.LogUtil;
 import com.sword.util.Util;
@@ -16,14 +17,20 @@ public class TestDemo {
 	
 	@Test
 	public void f() {
-		LogUtil.info("hello world");
+		
 		driver.get(url);
 		
-		ExcelUtil.openExcel("testcase/suite1.xls");
-		String content = ExcelUtil.getCellContent(1, 0, 1);
-		LogUtil.info("content is "+content);
+		PropertyMap map = new PropertyMap();
 		
-		ExcelUtil.setCellContent("hello", 1, 23, 1);
+		try {
+			driver.findElement(map.getLocator("baiduSearch")).sendKeys("hello");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 		
 		Util.pause(5000);
 	}

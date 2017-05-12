@@ -1,0 +1,2 @@
+baiduSearch = xpath://*[@id='kw']
+baiduBtn = xpath:////*[@id='su']
