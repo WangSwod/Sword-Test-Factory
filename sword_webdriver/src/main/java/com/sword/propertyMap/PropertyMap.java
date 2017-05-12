@@ -36,6 +36,10 @@ public class PropertyMap {
 			e.printStackTrace();
 		}
 	}
+	
+	public String getProperty(String key){
+		return properties.getProperty(key);
+	}
 
 	// return By object from .property file
 

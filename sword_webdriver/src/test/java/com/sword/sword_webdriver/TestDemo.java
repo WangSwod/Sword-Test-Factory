@@ -25,7 +25,7 @@ public class TestDemo {
 		try {
 			driver.findElement(map.getLocator("baiduSearch")).sendKeys("hello");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
