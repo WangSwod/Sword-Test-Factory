@@ -54,10 +54,18 @@ public class Keywords {
 	}
 	
 	public boolean pause(String noting, String millisecond){
+		try {
+			Util.pause((int)(Double.parseDouble(millisecond)));
+			
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			return false;
+		}
 		
-		Util.pause(Integer.valueOf(millisecond));
 		
-		return true;
 	}
 //
 //	public WebDriver visitURLTwo(String url) {

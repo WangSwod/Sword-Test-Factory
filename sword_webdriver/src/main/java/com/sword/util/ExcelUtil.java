@@ -88,12 +88,19 @@ public class ExcelUtil {
 		String resultValue;
 		for (int i = 1; i < rowCount; i++) {
 			conditionValue = getCellContent(sheetName, i, conditionColumn);
+			
+			LogUtil.info(conditionValue);
+			LogUtil.info(keyword);
 
-			if (conditionValue.toUpperCase() == keyword) {
+			if (conditionValue.equalsIgnoreCase(keyword)) {
 				resultValue = getCellContent(sheetName, i, tragetColumn);
 				resultMap.put(resultValue, Integer.valueOf(i));
+				LogUtil.info("put value in the map");
+				
 			}
 		}
+		
+		LogUtil.info("Put all the features in the result Map:"+resultMap);
 		return resultMap;
 	}
 	

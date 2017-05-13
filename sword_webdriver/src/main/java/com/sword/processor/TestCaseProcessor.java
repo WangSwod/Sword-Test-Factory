@@ -7,9 +7,11 @@ import java.util.Map;
 import com.sword.keyword.Keywords;
 import com.sword.propertyMap.PropertyMap;
 import com.sword.util.ExcelUtil;
+import com.sword.util.LogUtil;
 
 public class TestCaseProcessor {
-
+	private static boolean resultOfAllTest  = true;
+	
 	private static PropertyMap map;
 	private static Keywords keyword_Actions;
 	private static Method[] methods;
@@ -30,8 +32,9 @@ public class TestCaseProcessor {
 	private static int column_Expression;
 	private static int column_Data;
 	private static int column_Result;
+	
 
-	public static void excute(String pathToSuite) {
+	public static boolean excute(String pathToSuite) {
 
 		init();
 
@@ -50,6 +53,8 @@ public class TestCaseProcessor {
 		}
 
 		setFeatureResultToSuite(pathToSuite, resultMap);
+		
+		return resultOfAllTest;
 
 	}
 
@@ -78,6 +83,8 @@ public class TestCaseProcessor {
 		// reflection later
 		keyword_Actions = new Keywords();
 		methods = keyword_Actions.getClass().getMethods();
+		
+		LogUtil.info("--initilize the processor successfully");
 
 	}
 
@@ -90,6 +97,8 @@ public class TestCaseProcessor {
 		results = ExcelUtil.searchExcel(sheet_TestSuite, testSuite_RunMode, "Y", testSuite_Feature);
 
 		ExcelUtil.closeExcel();
+		
+		LogUtil.info("--Get all the features successfully");
 
 		return results;
 	}
@@ -101,6 +110,8 @@ public class TestCaseProcessor {
 		ExcelUtil.setMultipleCellContent(sheet_TestSuite, testSuite_Result, resultMap);
 
 		ExcelUtil.closeExcel();
+		
+		LogUtil.info("--Set all the features' result successfully");
 	}
 
 	private static String processFeatureExcel(String pathToFeature) {
@@ -130,34 +141,39 @@ public class TestCaseProcessor {
 
 				resultForTestStep = excute_Keyword(keyword, expression, data);
 
-				if (resultForTestStep.toLowerCase() == "fail") {
+				if (resultForTestStep.equalsIgnoreCase("fail")) {
 					resultForTestCase = "Fail";
 					resultForFeature = "Fail";
+					
+					resultOfAllTest = false;
 				}
 				ExcelUtil.setCellContent(resultForTestStep, testcase, i, column_Result);
 			}
 
-			if (resultForTestCase.toLowerCase() != "fail") {
+			if (!resultForTestCase.equalsIgnoreCase("fail")) {
 				resultForTestCase = "Pass";
-			}
+			} 
 			ExcelUtil.setCellContent(resultForTestCase, sheet_TestCase, testcases.get(testcase), testCase_Result);
 
 		}
 		
-		if(resultForFeature.toLowerCase() != "fail"){
+		if(!resultForFeature.equalsIgnoreCase("fail")){
 			resultForFeature = "Pass";
 		}
-
+		
+		LogUtil.info("--Excute all the features successfully");
 		return resultForFeature;
 	}
 
 	private static String excute_Keyword(String keyword, String expression, String data) {
 		
+		boolean result = true ;
 		try {
 			for(int i = 0 ; i < methods.length ; i++){
 				
-				if(methods[i].getName() == keyword){
-					methods[i].invoke(keyword_Actions, expression,data);
+				if(methods[i].getName().equals(keyword)){
+					result = (boolean) methods[i].invoke(keyword_Actions, expression,data);
+					
 					break;
 				}
 			}
@@ -167,9 +183,13 @@ public class TestCaseProcessor {
 					
 		}
 		
+		if(result){
+			return "Pass";
+		}else{
+			return "Fail";
+		}
 		
 		
-		return "Pass";
 	}
 
 }
