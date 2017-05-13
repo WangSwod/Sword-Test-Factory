@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -44,6 +46,65 @@ public class ExcelUtil {
 			e.printStackTrace();
 		}
 
+	}
+	
+	private static int  getRowCount(Sheet sheet) {
+		
+		int result = sheet.getLastRowNum() +1;
+		
+		LogUtil.info("Get " + result  + " rows from sheet:" +sheet.getSheetName());
+		return result;
+	}
+	
+	public static int  getRowCount(String sheetName) {
+		if (workbook == null) {
+			LogUtil.warn("Please make sure the excel file is alreday open");
+			throw new NullPointerException("Workbook is null");
+		}
+		
+		Sheet sheet = workbook.getSheet(sheetName);
+		return getRowCount(sheet);
+	}
+	
+	public static int  getRowCount(int sheetId) {
+		if (workbook == null) {
+			LogUtil.warn("Please make sure the excel file is alreday open");
+			throw new NullPointerException("Workbook is null");
+		}
+		
+		Sheet sheet = workbook.getSheetAt(sheetId);
+		
+		return getRowCount(sheet);
+	}
+	
+	public static Map<String, Integer> searchExcel(String sheetName , 
+			int conditionColumn , String keyword, int tragetColumn ){
+		
+		Map<String, Integer> resultMap = new HashMap<String,Integer>();
+		
+		int rowCount = getRowCount(sheetName);
+
+		String conditionValue;
+		String resultValue;
+		for (int i = 1; i < rowCount; i++) {
+			conditionValue = getCellContent(sheetName, i, conditionColumn);
+
+			if (conditionValue.toUpperCase() == keyword) {
+				resultValue = getCellContent(sheetName, i, tragetColumn);
+				resultMap.put(resultValue, Integer.valueOf(i));
+			}
+		}
+		return resultMap;
+	}
+	
+	
+	public static void setMultipleCellContent(String sheetName, int targetColumn, Map<Integer, String> contents ) {
+		
+		for (Integer rowId : contents.keySet()) {
+			String content = contents.get(rowId);
+			ExcelUtil.setCellContent(content, sheetName, rowId.intValue(), targetColumn);
+
+		}
 	}
 
 	private static String getCellContent(Sheet sheet, int rowId, int columnId) {
@@ -111,7 +172,7 @@ public class ExcelUtil {
 
 	}
 
-	public static void setCellContent(String content, Sheet sheet, int rowId, int columnId) {
+	private static void setCellContent(String content, Sheet sheet, int rowId, int columnId) {
 		LogUtil.info("Select row at row" + rowId);
 		Row row = sheet.getRow(rowId);
 		if(row == null){

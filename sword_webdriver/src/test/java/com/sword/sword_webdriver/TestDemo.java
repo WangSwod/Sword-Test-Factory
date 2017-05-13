@@ -22,8 +22,12 @@ public class TestDemo {
 		
 		PropertyMap map = new PropertyMap();
 		
+		String pathToSuite = map.getProperty("TestSuite_Path");
+		ExcelUtil.openExcel(pathToSuite);
+		ExcelUtil.getRowCount(0);
+		
 		try {
-			driver.findElement(map.getLocator("baiduSearch")).sendKeys("hello");
+			driver.findElement(map.getLocator("homepage.searchInputBox")).sendKeys("hello");
 		} catch (Exception e) {
 			
 			e.printStackTrace();
