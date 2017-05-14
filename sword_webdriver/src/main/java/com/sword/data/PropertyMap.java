@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 
 public class PropertyMap {
 
-	private static String default_Path = "propertyMap.property";
+	private static String default_Path = "config/propertyMap.property";
 
 	Properties properties;
 
