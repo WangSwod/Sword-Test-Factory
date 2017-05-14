@@ -4,9 +4,9 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sword.data.ExcelParser;
+import com.sword.data.PropertyMap;
 import com.sword.keyword.Keywords;
-import com.sword.propertyMap.PropertyMap;
-import com.sword.util.ExcelUtil;
 import com.sword.util.LogUtil;
 
 public class TestCaseProcessor {
@@ -92,11 +92,11 @@ public class TestCaseProcessor {
 
 		Map<String, Integer> results = new HashMap<String, Integer>();
 
-		ExcelUtil.openExcel(pathToSuite);
+		ExcelParser.openExcel(pathToSuite);
 
-		results = ExcelUtil.searchExcel(sheet_TestSuite, testSuite_RunMode, "Y", testSuite_Feature);
+		results = ExcelParser.searchExcel(sheet_TestSuite, testSuite_RunMode, "Y", testSuite_Feature);
 
-		ExcelUtil.closeExcel();
+		ExcelParser.closeExcel();
 		
 		LogUtil.info("--Get all the features successfully");
 
@@ -105,11 +105,11 @@ public class TestCaseProcessor {
 
 	private static void setFeatureResultToSuite(String pathToSuite, Map<Integer, String> resultMap) {
 
-		ExcelUtil.openExcel(pathToSuite);
+		ExcelParser.openExcel(pathToSuite);
 
-		ExcelUtil.setMultipleCellContent(sheet_TestSuite, testSuite_Result, resultMap);
+		ExcelParser.setMultipleCellContent(sheet_TestSuite, testSuite_Result, resultMap);
 
-		ExcelUtil.closeExcel();
+		ExcelParser.closeExcel();
 		
 		LogUtil.info("--Set all the features' result successfully");
 	}
@@ -120,9 +120,9 @@ public class TestCaseProcessor {
 		String resultForTestCase = "NT";
 		String resultForFeature = "NT";
 
-		ExcelUtil.openExcel(pathToFeature);
+		ExcelParser.openExcel(pathToFeature);
 
-		Map<String, Integer> testcases = ExcelUtil.searchExcel(sheet_TestCase, testCase_RunMode, "Y",
+		Map<String, Integer> testcases = ExcelParser.searchExcel(sheet_TestCase, testCase_RunMode, "Y",
 				testCase_TestCase);
 
 		String keyword;
@@ -132,12 +132,12 @@ public class TestCaseProcessor {
 		int rowCount;
 
 		for (String testcase : testcases.keySet()) {
-			rowCount = ExcelUtil.getRowCount(testcase);
+			rowCount = ExcelParser.getRowCount(testcase);
 
 			for (int i = 1; i < rowCount; i++) {
-				keyword = ExcelUtil.getCellContent(testcase, i, column_Keyword);
-				expression = ExcelUtil.getCellContent(testcase, i, column_Expression);
-				data = ExcelUtil.getCellContent(testcase, i, column_Data);
+				keyword = ExcelParser.getCellContent(testcase, i, column_Keyword);
+				expression = ExcelParser.getCellContent(testcase, i, column_Expression);
+				data = ExcelParser.getCellContent(testcase, i, column_Data);
 
 				resultForTestStep = excute_Keyword(keyword, expression, data);
 
@@ -147,13 +147,13 @@ public class TestCaseProcessor {
 					
 					resultOfAllTest = false;
 				}
-				ExcelUtil.setCellContent(resultForTestStep, testcase, i, column_Result);
+				ExcelParser.setCellContent(resultForTestStep, testcase, i, column_Result);
 			}
 
 			if (!resultForTestCase.equalsIgnoreCase("fail")) {
 				resultForTestCase = "Pass";
 			} 
-			ExcelUtil.setCellContent(resultForTestCase, sheet_TestCase, testcases.get(testcase), testCase_Result);
+			ExcelParser.setCellContent(resultForTestCase, sheet_TestCase, testcases.get(testcase), testCase_Result);
 
 		}
 		

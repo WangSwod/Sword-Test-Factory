@@ -8,9 +8,9 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.sword.data.ExcelParser;
+import com.sword.data.PropertyMap;
 import com.sword.processor.TestCaseProcessor;
-import com.sword.propertyMap.PropertyMap;
-import com.sword.util.ExcelUtil;
 import com.sword.util.LogUtil;
 import com.sword.util.Util;
 

@@ -1,4 +1,4 @@
-package com.sword.propertyMap;
+package com.sword.data;
 
 import java.io.File;
 import java.io.FileInputStream;

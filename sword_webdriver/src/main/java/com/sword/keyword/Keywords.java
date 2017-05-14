@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 
-import com.sword.propertyMap.PropertyMap;
+import com.sword.data.PropertyMap;
 import com.sword.util.LogUtil;
 import com.sword.util.Util;
 

@@ -1,4 +1,4 @@
-package com.sword.util;
+package com.sword.data;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,7 +17,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-public class ExcelUtil {
+import com.sword.util.LogUtil;
+
+public class ExcelParser {
 
 	private static Workbook workbook;
 	private static String path;
@@ -89,13 +91,9 @@ public class ExcelUtil {
 		for (int i = 1; i < rowCount; i++) {
 			conditionValue = getCellContent(sheetName, i, conditionColumn);
 			
-			LogUtil.info(conditionValue);
-			LogUtil.info(keyword);
-
 			if (conditionValue.equalsIgnoreCase(keyword)) {
 				resultValue = getCellContent(sheetName, i, tragetColumn);
 				resultMap.put(resultValue, Integer.valueOf(i));
-				LogUtil.info("put value in the map");
 				
 			}
 		}
@@ -109,14 +107,14 @@ public class ExcelUtil {
 		
 		for (Integer rowId : contents.keySet()) {
 			String content = contents.get(rowId);
-			ExcelUtil.setCellContent(content, sheetName, rowId.intValue(), targetColumn);
+			ExcelParser.setCellContent(content, sheetName, rowId.intValue(), targetColumn);
 
 		}
 	}
 
 	private static String getCellContent(Sheet sheet, int rowId, int columnId) {
 
-		LogUtil.info("Select row at row" + rowId);
+//		LogUtil.info("Select row at row" + rowId);
 		Row row = sheet.getRow(rowId);
 
 		LogUtil.info("Select cell at row" + rowId + " column" + columnId);
@@ -180,13 +178,13 @@ public class ExcelUtil {
 	}
 
 	private static void setCellContent(String content, Sheet sheet, int rowId, int columnId) {
-		LogUtil.info("Select row at row" + rowId);
+//		LogUtil.info("Select row at row" + rowId);
 		Row row = sheet.getRow(rowId);
 		if(row == null){
 			row = sheet.createRow(rowId);
 		}
 		
-		LogUtil.info("Select cell at row" + rowId + " column" + columnId);
+//		LogUtil.info("Select cell at row" + rowId + " column" + columnId);
 		Cell cell = row.getCell(columnId);
 
 		if (cell == null) {
