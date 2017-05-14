@@ -8,10 +8,12 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.bcel.generic.NEW;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -128,11 +130,22 @@ public class ExcelParser {
 			break;
 
 		case STRING:
-			result = cell.getStringCellValue();
+			result = cell.getStringCellValue().trim();
 			break;
 
 		case NUMERIC:
-			result = String.valueOf(cell.getNumericCellValue());
+			if(DateUtil.isCellDateFormatted(cell)){
+				result = String.valueOf(cell.getDateCellValue());
+			}else {
+				String value = String.valueOf(cell.getNumericCellValue());
+				//if the value is like 3000.0, need to convert it to 3000
+				if(value.indexOf(".") >-1){
+					result = String.valueOf(new Double(value)).trim();
+				}else {
+					result = value.trim();
+				}
+			}
+			
 			break;
 
 		case FORMULA:

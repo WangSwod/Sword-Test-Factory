@@ -55,7 +55,7 @@ public class Keywords {
 	
 	public boolean pause(String noting, String millisecond){
 		try {
-			Util.pause((int)(Double.parseDouble(millisecond)));
+			Util.pause(new Double(millisecond).intValue());
 			
 			return true;
 			
