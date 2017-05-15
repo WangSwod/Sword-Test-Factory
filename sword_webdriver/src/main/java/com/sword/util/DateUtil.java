@@ -12,7 +12,7 @@ public class DateUtil {
 
 	public static int getMonth(Date date) {
 
-		return initCalendar(date).get(Calendar.MONTH);
+		return initCalendar(date).get(Calendar.MONTH) +1;
 	}
 
 	public static int getDay(Date date) {

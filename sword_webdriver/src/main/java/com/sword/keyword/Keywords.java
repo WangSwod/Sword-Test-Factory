@@ -539,4 +539,19 @@ public class Keywords {
 			
 		}
 	}
+	
+	public boolean assertStringNotExisting(String nothing, String text) {
+		try {
+			Assert.assertTrue(!driver.getPageSource().contains(text));
+			LogUtil.info("Assert successfully");
+			return true;
+		} catch (Exception e) {
+			
+			LogUtil.info("Fail to assert");
+			e.getStackTrace();
+			return false;
+			
+		}
+	}
+	
 }

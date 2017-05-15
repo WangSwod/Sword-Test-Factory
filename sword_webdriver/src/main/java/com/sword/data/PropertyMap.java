@@ -48,7 +48,8 @@ public class PropertyMap {
 		String value = properties.getProperty(key);
 
 		String locatorType = value.split(":")[0];
-		String locatorValue = value.split(":")[1];
+		
+		String locatorValue = value.substring(value.indexOf(":")+1);
 
 		switch (locatorType.toLowerCase()) {
 		case "id":

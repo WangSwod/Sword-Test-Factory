@@ -72,6 +72,9 @@
 			<version>2.8.2</version>
 		</dependency>
 
+
+
+
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -86,6 +89,13 @@
 			<version>5.1.42</version>
 		</dependency>
 
+
+		<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>3.9</version>
+		</dependency>
 
 	</dependencies>
 </project>

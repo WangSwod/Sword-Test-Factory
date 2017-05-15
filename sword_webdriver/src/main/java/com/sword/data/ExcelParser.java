@@ -123,7 +123,7 @@ public class ExcelParser {
 		Cell cell = row.getCell(columnId);
 
 		String result = null;
-		LogUtil.info("cell type:" + cell.getCellTypeEnum());
+//		LogUtil.info("cell type:" + cell.getCellTypeEnum());
 		switch (cell.getCellTypeEnum()) {
 		case BOOLEAN:
 			result = String.valueOf(cell.getBooleanCellValue());

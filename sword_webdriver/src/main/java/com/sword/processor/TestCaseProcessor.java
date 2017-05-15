@@ -1,6 +1,7 @@
 package com.sword.processor;
 
 import java.lang.reflect.Method;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,9 +9,11 @@ import com.sword.data.ExcelParser;
 import com.sword.data.PropertyMap;
 import com.sword.keyword.Keywords;
 import com.sword.util.LogUtil;
+import com.sword.util.Util;
 
 public class TestCaseProcessor {
 	private static boolean resultOfAllTest  = true;
+	private static String currentTime ;
 	
 	private static PropertyMap map;
 	private static Keywords keyword_Actions;
@@ -48,7 +51,7 @@ public class TestCaseProcessor {
 
 			pathToFeature = "testcase/" + feature + ".xls";
 			resultOfFeature = processFeatureExcel(pathToFeature);
-			resultMap.put(features.get(feature), resultOfFeature);
+			resultMap.put(features.get(feature), resultOfFeature + currentTime);
 
 		}
 
@@ -83,6 +86,10 @@ public class TestCaseProcessor {
 		// reflection later
 		keyword_Actions = new Keywords();
 		methods = keyword_Actions.getClass().getMethods();
+		
+		
+		Date date = new Date();
+		currentTime = "(" + Util.getDate(date, "/") + "-" + Util.getTime(date, ":") + ")";
 		
 		LogUtil.info("--initilize the processor successfully");
 
@@ -142,18 +149,18 @@ public class TestCaseProcessor {
 				resultForTestStep = excute_Keyword(keyword, expression, data);
 
 				if (resultForTestStep.equalsIgnoreCase("fail")) {
-					resultForTestCase = "Fail";
+					resultForTestCase = "Fail"  ;
 					resultForFeature = "Fail";
 					
 					resultOfAllTest = false;
 				}
-				ExcelParser.setCellContent(resultForTestStep, testcase, i, column_Result);
+				ExcelParser.setCellContent(resultForTestStep + currentTime, testcase, i, column_Result);
 			}
 
 			if (!resultForTestCase.equalsIgnoreCase("fail")) {
 				resultForTestCase = "Pass";
 			} 
-			ExcelParser.setCellContent(resultForTestCase, sheet_TestCase, testcases.get(testcase), testCase_Result);
+			ExcelParser.setCellContent(resultForTestCase + currentTime, sheet_TestCase, testcases.get(testcase), testCase_Result);
 
 		}
 		

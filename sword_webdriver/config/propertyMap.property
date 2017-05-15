@@ -1,6 +1,20 @@
 #Locator
-homepage.searchInputBox = xpath://*[@id='kw']
-homepage.baiduBtn = xpath://*[@id='su']
+loginPage.account = xpath://*[@id='email']
+loginPage.password = xpath://*[@id='password']
+loginPage.loginBtn = xpath://*[@id='wechatNow']/div/div/div[2]/form/div[3]/div[2]/span/a/button
+
+homePage.management = xpath://*[@id="wechatNow"]/div/div/aside/section/ul/li[4]
+homePage.tags = xpath://*[@id="wechatNow"]/div/div/aside/section/ul/li[4]/ul/li[4]/a
+homePage.addNewTagBtn = xpath://*[@id="wechatNow"]/div/div/div/div/section[2]/div/div[1]/div[2]/div[2]/div/ul/li/span/a/button
+homePage.tagNameInput = xpath://*[@id="name"]
+homePage.tagNameConfirmBtn = xpath://*[@id="newTag"]/div[2]/section/div/div/form/div[2]/div[2]/span/a/button
+homePage.tagDeleteBtn  = xpath://div[contains(text(),'abc_123_!?')]/parent::*/following-sibling::*[4]//button[contains(@class,'margin')and contains(.,'Delete')]
+homePage.tagDeleteConfirmBtn = xpath://div[contains(text(),'abc_123_!?')]/parent::*/following-sibling::*[4]//button[contains(@class,'btn-danger')and contains(.,'Delete')]
+homePage.tagEditBtn = xpath://div[contains(text(),'abc_123_!?')]/parent::*/following-sibling::*[4]//button[contains(.,'Edit')]
+homePage.tagSearchInput = xpath://*[@id='react-select-2--value']/div[1]/div
+
+homePage.profile = xpath://*[@id="wechatNow"]/div/div/header/nav/div/ul/li[4]/a
+homePage.logout = xpath://*[@id="wechatNow"]/div/div/header/nav/div/ul/li[4]/ul/li[3]/div[2]
 
 #Data
 
