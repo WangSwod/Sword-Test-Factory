@@ -62,20 +62,30 @@ public class Util {
 		return false;
 
 	}
+	
+	public static String formatDate(String date) {
+		if(date.length()<2){
+			return "0" +date;
+					
+		}
+		return date;
+		
+	}
 
 	public static String getDate(Date date, String seperator) {
 		String year = String.valueOf(DateUtil.getYear(date));
-		String month = String.valueOf(DateUtil.getMonth(date));
-		String day = String.valueOf(DateUtil.getDay(date));
+		String month = formatDate(String.valueOf(DateUtil.getMonth(date)));
+		String day = formatDate(String.valueOf(DateUtil.getDay(date)));
 
 		return year + seperator + month + seperator + day;
 
 	}
 
 	public static String getTime(Date date, String seperator) {
-		String hour = String.valueOf(DateUtil.getHour(date));
-		String minute = String.valueOf(DateUtil.getMinute(date));
-		String second = String.valueOf(DateUtil.getSecond(date));
+		String hour = formatDate(String.valueOf(DateUtil.getHour(date)));
+		
+		String minute = formatDate(String.valueOf(DateUtil.getMinute(date)));
+		String second = formatDate(String.valueOf(DateUtil.getSecond(date)));
 
 		return hour + seperator + minute + seperator + second;
 	}

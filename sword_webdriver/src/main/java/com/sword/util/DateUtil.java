@@ -21,7 +21,8 @@ public class DateUtil {
 	}
 
 	public static int getHour(Date date) {
-
+		
+		
 		return initCalendar(date).get(Calendar.HOUR_OF_DAY);
 	}
 
