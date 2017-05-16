@@ -1,5 +1,6 @@
 package com.sword.keyword;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -529,11 +530,11 @@ public class Keywords {
 	public boolean assertString (String nothing, String text){
 		try {
 			Assert.assertTrue(driver.getPageSource().contains(text));
-			LogUtil.info("Assert successfully");
+			LogUtil.info("##########Assert successfully");
 			return true;
 		} catch (Exception e) {
 			
-			LogUtil.info("Fail to assert");
+			LogUtil.info("##########Fail to assert");
 			e.getStackTrace();
 			return false;
 			
@@ -543,15 +544,43 @@ public class Keywords {
 	public boolean assertStringNotExisting(String nothing, String text) {
 		try {
 			Assert.assertTrue(!driver.getPageSource().contains(text));
-			LogUtil.info("Assert successfully");
+			LogUtil.info("##########Assert successfully");
 			return true;
 		} catch (Exception e) {
 			
-			LogUtil.info("Fail to assert");
+			LogUtil.info("##########Fail to assert");
 			e.getStackTrace();
 			return false;
 			
 		}
+	}
+	
+	public boolean assertElementCount(String expression, String data) {
+		
+		try {
+			
+			int expectedCount = new Double(data).intValue();
+			LogUtil.info("expectedCount is " + expectedCount);
+			
+			int acutalCount = driver.findElements(By.xpath(expression)).size();
+			
+			LogUtil.info("actualCount is " + acutalCount);
+			
+			Assert.assertEquals(acutalCount,expectedCount);
+			LogUtil.info("##########Assert successfully");
+			return true;
+			
+		} catch (Exception e) {
+			LogUtil.info("##########Fail to assert");
+			e.getStackTrace();
+			return false;
+		}
+		
+		
+		
+		
+		
+		
 	}
 	
 }

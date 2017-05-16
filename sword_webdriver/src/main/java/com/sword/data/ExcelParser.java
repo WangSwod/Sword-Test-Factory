@@ -5,10 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.bcel.generic.NEW;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -84,7 +83,7 @@ public class ExcelParser {
 	public static Map<String, Integer> searchExcel(String sheetName , 
 			int conditionColumn , String keyword, int tragetColumn ){
 		
-		Map<String, Integer> resultMap = new HashMap<String,Integer>();
+		Map<String, Integer> resultMap = new LinkedHashMap<String,Integer>();
 		
 		int rowCount = getRowCount(sheetName);
 
@@ -119,7 +118,7 @@ public class ExcelParser {
 //		LogUtil.info("Select row at row" + rowId);
 		Row row = sheet.getRow(rowId);
 
-		LogUtil.info("Select cell at row" + rowId + " column" + columnId);
+//		LogUtil.info("Select cell at row" + rowId + " column" + columnId);
 		Cell cell = row.getCell(columnId);
 
 		String result = null;

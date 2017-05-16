@@ -8,10 +8,12 @@ homePage.tags = xpath://*[@id="wechatNow"]/div/div/aside/section/ul/li[4]/ul/li[
 homePage.addNewTagBtn = xpath://*[@id="wechatNow"]/div/div/div/div/section[2]/div/div[1]/div[2]/div[2]/div/ul/li/span/a/button
 homePage.tagNameInput = xpath://*[@id="name"]
 homePage.tagNameConfirmBtn = xpath://*[@id="newTag"]/div[2]/section/div/div/form/div[2]/div[2]/span/a/button
-homePage.tagDeleteBtn  = xpath://div[contains(text(),'abc_123_!?')]/parent::*/following-sibling::*[4]//button[contains(@class,'margin')and contains(.,'Delete')]
-homePage.tagDeleteConfirmBtn = xpath://div[contains(text(),'abc_123_!?')]/parent::*/following-sibling::*[4]//button[contains(@class,'btn-danger')and contains(.,'Delete')]
-homePage.tagEditBtn = xpath://div[contains(text(),'abc_123_!?')]/parent::*/following-sibling::*[4]//button[contains(.,'Edit')]
-homePage.tagSearchInput = xpath://*[@id='react-select-2--value']/div[1]/div
+homePage.tagDeleteBtn  = xpath://*[@id='wechatNow']/div/div/div/div/section[2]/div/div[1]/div[3]/div/div[2]/div[1]/div[5]/div/span[2]/a/button
+homePage.tagDeleteConfirmBtn = xpath://*[@id='undefined_delete_0']/div[2]/div/div/button[1]
+homePage.tagEditBtn = xpath://*[@id='wechatNow']/div/div/div/div/section[2]/div/div[1]/div[3]/div/div[2]/div[1]/div[5]/div/span[1]/a/button
+homePage.tagSearchInput = xpath://*[@id='react-select-2--value']/div[2]/input
+homePage.tagSearchConfirm = xpath:.//*[@id='react-select-2--list']/div/span[1]
+homePage.tagSearchResultRow = xpath:.//*[@id='wechatNow']/div/div/div/div/section[2]/div/div[1]/div[3]/div/div[2]/div[not(contains(@class,'collapse'))]
 
 homePage.profile = xpath://*[@id="wechatNow"]/div/div/header/nav/div/ul/li[4]/a
 homePage.logout = xpath://*[@id="wechatNow"]/div/div/header/nav/div/ul/li[4]/ul/li[3]/div[2]
