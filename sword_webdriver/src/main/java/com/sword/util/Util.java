@@ -18,10 +18,10 @@ public class Util {
 	public static void pause(int millisecond) {
 
 		try {
-			LogUtil.info("Pause " + millisecond / 1000 + " second");
+			LogUtil.info("Command || Pause " + millisecond / 1000 + " second");
 			Thread.sleep(millisecond);
 		} catch (Exception e) {
-			LogUtil.info("Fail to pause");
+			LogUtil.info("Command || Fail to pause");
 			e.printStackTrace();
 		}
 	}
@@ -53,12 +53,12 @@ public class Util {
 				}
 			}
 
-			LogUtil.info("compare successfully, those images are the same");
+			LogUtil.info("Command || compare successfully, those images are the same");
 			return true;
 
 		}
 
-		LogUtil.info("compare successfully, those images are different");
+		LogUtil.info("Command || compare successfully, those images are different");
 		return false;
 
 	}

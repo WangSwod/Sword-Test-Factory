@@ -6,7 +6,7 @@
 	</properties>
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
-			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level - %msg%n" />
 		</Console>
 
 		<RollingRandomAccessFile name="MyFile"
@@ -14,7 +14,7 @@
 			filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd HH:mm:ss}.log">
 			
 			<PatternLayout
-				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level  - %msg%n" />
 			<Policies>
 			
 				<!-- TimeBasedTriggeringPolicy  这个配置需要和filePattern结合使用，

@@ -1,6 +1,7 @@
 package com.sword.keyword;
 
-import org.openqa.selenium.By;
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -31,17 +32,16 @@ public class Keywords {
 		case "chrome":
 			System.setProperty("webdriver.chrome.driver", map.getProperty("chromeDriver_Path"));
 			driver = new ChromeDriver();
-			LogUtil.info("Create chrome driver successfully");
 			break;
 		case "firefox":
 			System.setProperty("webdriver.gecko.driver", map.getProperty("fireFoxDriver_Path"));
 			driver = new FirefoxDriver();
-			LogUtil.info("Create fireFox driver successfully");
+			
 			break;
 		default:
 			break;
 		}
-		
+		LogUtil.info("Command || Create fireFox driver successfully");
 		return true;
 	}
 	
@@ -49,7 +49,7 @@ public class Keywords {
 	
 	public boolean visitURL(String nothing , String url) {
 		driver.get(url);
-		LogUtil.info("Visit URL:" + url);
+		LogUtil.info("Command || Visit URL:" + url);
 		return true;
 		
 	}
@@ -141,14 +141,14 @@ public class Keywords {
 		try {
 			element = driver.findElement(map.getLocator(expression));
 			element.clear();
-			LogUtil.info("Clear all the text in the element:" + expression);
+			LogUtil.info("Command || Clear all the text in the element:" + expression);
 			element.sendKeys(text);
-			LogUtil.info("input text:" + text + " in the element:" +expression);
+			LogUtil.info("Command || Input text:" + text + " in the element:" +expression);
 			return true;
 			
 		} catch (Exception e) {
 			
-			LogUtil.info("Fail to input in the element:" +expression);
+			LogUtil.info("Command || Fail to input in the element:" +expression);
 			e.printStackTrace();
 			return false;
 		}
@@ -160,11 +160,11 @@ public class Keywords {
 	public boolean click(String expression , String noting) {
 		try {
 			driver.findElement(map.getLocator(expression)).click();
-			LogUtil.info("Click on the element:" + expression);
+			LogUtil.info("Command || Click on the element:" + expression);
 			return true;
 		} catch (Exception e) {
 			
-			LogUtil.info("Fail to click on the element:" + expression);
+			LogUtil.info("Command || Fail to click on the element:" + expression);
 			e.printStackTrace();
 			return false;
 		}
@@ -440,10 +440,10 @@ public class Keywords {
 	public  boolean  closeBrowser(String nothingOne, String nothingTwo) {
 		try {
 			driver.quit();
-			LogUtil.info("Close browser successfully");
+			LogUtil.info("Command || Close browser successfully");
 			return true;
 		} catch (Exception e) {
-			LogUtil.info("Fail to close browser");
+			LogUtil.info("Command || Fail to close browser");
 			e.printStackTrace();
 			return false;
 		}
@@ -562,7 +562,13 @@ public class Keywords {
 			int expectedCount = new Double(data).intValue();
 			LogUtil.info("expectedCount is " + expectedCount);
 			
-			int acutalCount = driver.findElements(By.xpath(expression)).size();
+			List<WebElement> list;
+			list = driver.findElements(map.getLocator(expression));
+			
+			
+
+			
+			int acutalCount = list.size();
 			
 			LogUtil.info("actualCount is " + acutalCount);
 			

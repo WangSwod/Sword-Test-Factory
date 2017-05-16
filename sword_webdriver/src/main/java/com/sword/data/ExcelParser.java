@@ -158,7 +158,7 @@ public class ExcelParser {
 
 		}
 
-		LogUtil.info("Get the cell value: " + result);
+		LogUtil.info("Read || sheet: " + sheet.getSheetName() + "||row: "+rowId +"||column: "+columnId +"||value: " + result);
 		return result;
 	}
 
@@ -169,7 +169,7 @@ public class ExcelParser {
 			throw new NullPointerException("Workbook is null");
 		}
 
-		LogUtil.info("Open sheet at sheet" + sheetId);
+//		LogUtil.info("Open sheet at sheet" + sheetId);
 		Sheet sheet = workbook.getSheetAt(sheetId);
 
 		return getCellContent(sheet, rowId, columnId);
@@ -182,7 +182,7 @@ public class ExcelParser {
 			throw new NullPointerException("Workbook is null");
 		}
 
-		LogUtil.info("Open sheet of name:" + sheetName);
+//		LogUtil.info("Open sheet of name:" + sheetName);
 		Sheet sheet = workbook.getSheet(sheetName);
 
 		return getCellContent(sheet, rowId, columnId);
@@ -220,7 +220,8 @@ public class ExcelParser {
 			e.printStackTrace();
 		}
 
-		LogUtil.info("Write to cell the content: " + content);
+		LogUtil.info("Write || sheet: " + sheet.getSheetName() + "||row: "+rowId +"||column: "+columnId +"||value: " + content);
+		LogUtil.info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 	}
 
@@ -230,7 +231,7 @@ public class ExcelParser {
 			throw new NullPointerException("Workbook is null");
 		}
 
-		LogUtil.info("Open sheet at sheet" + sheetId);
+//		LogUtil.info("Open sheet at sheet" + sheetId);
 		Sheet sheet = workbook.getSheetAt(sheetId);
 
 		setCellContent(content, sheet, rowId, columnId);
@@ -242,7 +243,7 @@ public class ExcelParser {
 			throw new NullPointerException("Workbook is null");
 		}
 
-		LogUtil.info("Open sheet of name:" + sheetName);
+//		LogUtil.info("Open sheet of name:" + sheetName);
 		Sheet sheet = workbook.getSheet(sheetName);
 		
 		setCellContent(content, sheet, rowId, columnId);
