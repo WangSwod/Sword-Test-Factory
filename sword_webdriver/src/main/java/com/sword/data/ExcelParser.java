@@ -136,13 +136,20 @@ public class ExcelParser {
 			if(DateUtil.isCellDateFormatted(cell)){
 				result = String.valueOf(cell.getDateCellValue());
 			}else {
+				
+				
 				String value = String.valueOf(cell.getNumericCellValue());
+				
+				LogUtil.warn(value.substring(value.indexOf(".")));
+				
 				//if the value is like 3000.0, need to convert it to 3000
-				if(value.indexOf(".") >-1){
-					result = String.valueOf(new Double(value)).trim();
+				if(value.substring(value.indexOf(".")).equals(".0")){
+					result = String.valueOf(new Double(value).intValue());
+					
 				}else {
-					result = value.trim();
+					result = String.valueOf(new Double(value)).trim();
 				}
+				
 			}
 			
 			break;
@@ -158,7 +165,9 @@ public class ExcelParser {
 
 		}
 
-		LogUtil.info("Read || sheet: " + sheet.getSheetName() + "||row: "+rowId +"||column: "+columnId +"||value: " + result);
+//		LogUtil.info("Read    || sheet: " + sheet.getSheetName() + "||row: "+rowId +"||column: "+columnId +"||value: " + result 
+//				+"||type:"+ cell.getCellTypeEnum().toString());
+		LogUtil.info("Read    || sheet: " + sheet.getSheetName() + "||row: "+rowId +"||column: "+columnId +"||value: " + result );
 		return result;
 	}
 
@@ -220,7 +229,7 @@ public class ExcelParser {
 			e.printStackTrace();
 		}
 
-		LogUtil.info("Write || sheet: " + sheet.getSheetName() + "||row: "+rowId +"||column: "+columnId +"||value: " + content);
+		LogUtil.info("Write   || sheet: " + sheet.getSheetName() + "||row: "+rowId +"||column: "+columnId +"||value: " + content);
 		LogUtil.info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 	}
