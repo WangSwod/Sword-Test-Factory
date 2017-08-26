@@ -1,4 +1,4 @@
-#Locator
+#Locator for WCN2
 loginPage.account = xpath://*[@id='email']
 loginPage.password = xpath://*[@id='password']
 loginPage.loginBtn = xpath://*[@id='wechatNow']/div/div/div[2]/form/div[3]/div[2]/span/a/button
@@ -18,6 +18,35 @@ homePage.tagSearchDeleteBtn  = xpath:.//*[@id='react-select-2--value']/div[1]/sp
 
 homePage.profile = xpath://*[@id="wechatNow"]/div/div/header/nav/div/ul/li[4]/a
 homePage.logout = xpath://*[@id="wechatNow"]/div/div/header/nav/div/ul/li[4]/ul/li[3]/div[2]
+
+#Locator for Accor
+accor.loginPage.account = xpath:html/body/div[1]/div/div/div/div/div[2]/ui-view/div/form/fieldset/div[1]/input
+accor.loginPage.password = xpath:html/body/div[1]/div/div/div/div/div[2]/ui-view/div/form/fieldset/div[2]/input
+accor.loginPage.login = xpath:html/body/div[1]/div/div/div/div/div[2]/ui-view/div/form/fieldset/button
+
+accor.homePage.contents = xpath:html/body/div[1]/div/div/sidebar/div[1]/ul/li[3]/a
+accor.homePage.articles = xpath:html/body/div[1]/div/div/sidebar/div[1]/ul/li[3]/ul/li[1]/a
+accor.homePage.newArticleBtn = xpath:.//*[@id='articleList']/div[1]/div/action-button-list/ul/li[1]/button
+accor.homePage.articleBtn = xpath:.//*[@id='articleList']/div[1]/div/action-button-list/ul/li[1]/ul/li[1]/a
+accor.homePage.article_AddCoverBtn = xpath:.//*[@id='articleEdit']/div/div/div[1]/div/div[2]/form/div[1]/div/div/div[1]/div[1]/label
+accor.homePage.aritcle_AddImageBtn = xpath:html/body/div[1]/div/div/div/div[2]/image-select/div/div[1]/div/div[1]/div[1]/label
+accor.homePage.article_uploadImage = xpath:html/body/div[1]/div/div/div/div[2]/image-select/div/div[1]/div/div[1]/div[1]/label/input
+accor.homePage.aritcle_imageConfirmBtn = xpath:html/body/div[1]/div/div/div/div[2]/image-select/div/div[1]/button
+
+
+accor.homePage.article_TitleInput = xpath:.//*[@id='title']
+accor.homePage.article_TagInput = xpath:.//*[@id='tags']/div[1]/input
+accor.homePage.article_DescriptionInput = xpath:.//*[@id='description']
+accor.homePage.article_BodyInput = xpath:.//*[@id='articleEdit']/div/div/div[1]/div/div[2]/form/div[8]/div/div[2]/div[3]/div[3]
+accor.homePage.aritcle_SaveBtn = xpath:.//*[@id='articleEdit']/div/ul/li/button
+accor.homePage.article_PublishBtn = xpath:.//*[@id='articleEdit']/div/ul/li[2]/button
+
+
+accor.homempage.profile = xpath:html/body/div[1]/div/nav/ul/li[3]/a
+accor.homempege.logoutBtn  = xpath:html/body/div[1]/div/nav/ul/li[3]/ul/li[3]/a
+
+
+
 
 #Data
 

@@ -140,7 +140,7 @@ public class ExcelParser {
 				
 				String value = String.valueOf(cell.getNumericCellValue());
 				
-				LogUtil.warn(value.substring(value.indexOf(".")));
+//				LogUtil.warn(value.substring(value.indexOf(".")));
 				
 				//if the value is like 3000.0, need to convert it to 3000
 				if(value.substring(value.indexOf(".")).equals(".0")){

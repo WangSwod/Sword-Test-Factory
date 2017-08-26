@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.sword.data.PropertyMap;
@@ -15,6 +17,8 @@ import com.sword.util.Util;
 public class Keywords {
 	
 	private WebDriver driver;
+	private WebDriverWait wait;
+	
 	private PropertyMap map = new PropertyMap();
 	
 //	public Keywords(WebDriver driver) {
@@ -41,6 +45,9 @@ public class Keywords {
 		default:
 			break;
 		}
+		
+		
+		
 		LogUtil.info("Command || Create fireFox driver successfully");
 		return true;
 	}
@@ -462,9 +469,18 @@ public class Keywords {
 //		wait.until(ExpectedConditions.elementToBeSelected(by));
 //	}
 //	
-//	public void waitForElementToBePresent(By by) {
-//		wait.until(ExpectedConditions.presenceOfElementLocated(by));
-//	}
+	public void waitForElementToBePresent(String expressoin, String nothing) {
+		wait = new WebDriverWait(driver, 10);
+		try {
+			LogUtil.info("Wait for element:" + expressoin);
+			wait.until(ExpectedConditions.presenceOfElementLocated(map.getLocator(expressoin)));
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			LogUtil.info("Fail to wait for element:" +expressoin);
+		}
+	}
 //	
 //	@SuppressWarnings("deprecation")
 //	public void  waitForElementToContainText(By by ,String text) {
@@ -517,6 +533,72 @@ public class Keywords {
 //		robot.keyRelease(KeyEvent.VK_CONTROL);
 //		
 //	}
+	
+	
+
+	
+//	private void  pressAndRelease(Robot robot , int keyCode) {
+//		
+//		robot.keyPress(keyCode);
+//		robot.keyRelease(keyCode);
+//	}
+//	
+//	public void pressKeyBoard(String nothing, String data) {
+//		
+//		Robot robot = null;
+//		
+//		try {
+//			robot = new Robot();
+//		} catch (AWTException e) {
+//						e.printStackTrace();
+//		}
+//		
+//		switch (data) {
+//		case "enter":
+//			pressAndRelease(robot, KeyEvent.VK_ENTER);
+//			LogUtil.info("Press enter");
+//			break;
+//			
+//		case "f":
+//			pressAndRelease(robot, KeyEvent.VK_F);
+//			LogUtil.info("Press F");
+//			
+//		case "down":
+//			pressAndRelease(robot, KeyEvent.VK_DOWN);
+//			LogUtil.info("Press down");
+//		default:
+//			break;
+//		}
+//	}
+//	
+//	
+//	
+//	public void pressCtrlAndTab(String nothingOne, String nothingTwo) {
+//	
+//	Robot robot = null;
+//	
+//	try {
+//		robot = new Robot();
+//		robot.keyPress(KeyEvent.VK_META);
+//		
+//		
+//			robot.keyPress(KeyEvent.VK_TAB);
+//			robot.wait(200);
+//			robot.keyRelease(KeyEvent.VK_TAB);
+//		
+//		
+//		robot.keyRelease(KeyEvent.VK_META);
+//		
+//		LogUtil.info("Press ctrl and tab key successfully");
+//	} catch (AWTException | InterruptedException e) {
+//		
+//		e.printStackTrace();
+//		LogUtil.info("Fail to press ctrl and tab key");
+//	}
+//	
+//	
+//	
+//}
 //	
 //	public void  highlightElement(By by) {
 //		WebElement element = driver.findElement(by);		
